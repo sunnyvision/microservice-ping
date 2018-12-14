@@ -12,5 +12,13 @@
 */
 
 $router->get('/', function () use ($router) {
-    return $router->app->version();
+    return '(c) sunnyvision - ' . gethostname();
+});
+
+$router->get('/icmp', function () use ($router) {
+    return '(c) sunnyvision - ' . gethostname();
+});
+
+$router->get('/fsock', function () use ($router) {
+    return '(c) sunnyvision - ' . gethostname();
 });
