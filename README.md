@@ -36,6 +36,10 @@ Method: POST
 
 Path: /icmp/{host}
 
+Optional query: packets (default: 3), when specified 1 ~ 5, it will emit a request per second
+
+Optional query: complex (default: no), when specified yes, the result will be verbose
+
 Curl: `curl -k -X POST -d "key=somekey" 'https://localhost:10443/icmp/google.com'`
 
 TCP
