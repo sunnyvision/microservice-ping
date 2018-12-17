@@ -25,7 +25,7 @@ HTTPS_PORT is the https port specified in docker-compose.yml
 HTTP_PORT is the http port specified in docker-compose.yml 
 
 
-`MICROSERVICE_APIKEY=somekey HTTPS_PORT=10444 HTTP_PORT=10088 docker-compose up -d`
+`MICROSERVICE_APIKEY=somekey HTTPS_PORT=10443 HTTP_PORT=10080 docker-compose up -d`
 
 
 # Usage
@@ -36,7 +36,7 @@ Method: POST
 
 Path: /icmp/{host}
 
-Curl: `curl -k -X POST -d "key=abc" 'https://localhost:10443/icmp/google.com'`
+Curl: `curl -k -X POST -d "key=somekey" 'https://localhost:10443/icmp/google.com'`
 
 TCP
 ---
@@ -44,4 +44,4 @@ Method: POST
 
 Path: /tcp/{host}:{port}
 
-Curl: `curl -k -X POST -d "key=abc" 'https://localhost:10443/tcp/google.com:443'`
+Curl: `curl -k -X POST -d "key=somekey" 'https://localhost:10443/tcp/google.com:443'`
