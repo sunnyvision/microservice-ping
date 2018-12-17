@@ -35,10 +35,13 @@ class Authenticate
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        if ($this->auth->guard($guard)->guest()) {
-            return response('Unauthorized.', 401);
+        $key = env('MICROSERVICE_APIKEY', false);
+        if(!$key) {
+            throw new \Exception("Error Processing Request", 1);
         }
-
+        if($key != $request->input('key')) {
+            throw new \Exception("Error Processing Request", 1);
+        }
         return $next($request);
     }
 }

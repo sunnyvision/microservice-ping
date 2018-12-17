@@ -1,4 +1,5 @@
 <?php
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -11,14 +12,15 @@
 |
 */
 
-$router->get('/', function () use ($router) {
-    return '(c) sunnyvision - ' . gethostname();
+$router->get('/{any:.*}', function ($any) use ($router) {
+	throw new \Exception("Error Processing Request", 1);
+	
+	$return = array();
+	$return['version'] = '(c) sunnyvision - ' . env('VERSION');
+	$return['answered_at'] = date("Y-m-d H:i:s");
+	$return['queried_by'] = empty($_SERVER['X_HTTP_FORWARDED_FOR']) ? $_SERVER['REMOTE_ADDR'] : $_SERVER['X_HTTP_FORWARDED_FOR'];
+	return $return;
 });
 
-$router->get('/icmp', function () use ($router) {
-    return '(c) sunnyvision - ' . gethostname();
-});
-
-$router->get('/fsock', function () use ($router) {
-    return '(c) sunnyvision - ' . gethostname();
-});
+$router->post('/icmp/{host}', ['middleware' => 'auth', "uses" => "PingController@icmp"]);
+$router->post('/tcp/{host}:{port}', ['middleware' => 'auth', "uses" => "PingController@tcp"]);
