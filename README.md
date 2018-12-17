@@ -10,19 +10,19 @@ If run inside docker, can refer to below
 
 Configurations
 ---
-Nginx: .docker/etc/nginx
-SSL: .docker/etc/ssl
-FPM: .docker/etc/php
+Nginx: `.docker/etc/nginx` 
+SSL: `.docker/etc/ssl` 
+FPM: `.docker/etc/php` 
 
 
 
 Launch with docker-compose 
 ---
-MICROSERVICE_APIKEY is the key required to be posted as "key" in query for every request
-HTTPS_PORT is the https port specified in docker-compose.yml
-HTTP_PORT is the http port specified in docker-compose.yml
+MICROSERVICE_APIKEY is the key required to be posted as "key" in query for every request 
+HTTPS_PORT is the https port specified in docker-compose.yml  
+HTTP_PORT is the http port specified in docker-compose.yml 
 
-MICROSERVICE_APIKEY=somekey HTTPS_PORT=10444 HTTP_PORT=10088 docker-compose up -d
+`MICROSERVICE_APIKEY=somekey HTTPS_PORT=10444 HTTP_PORT=10088 docker-compose up -d`
 
 
 # Usage
