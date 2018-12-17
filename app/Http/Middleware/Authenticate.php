@@ -37,10 +37,14 @@ class Authenticate
     {
         $key = env('MICROSERVICE_APIKEY', false);
         if(!$key) {
-            throw new \Exception("Error Processing Request", 1);
+            return array(
+                'error' => 'cannot run in keyless mode',
+            );
         }
         if($key != $request->input('key')) {
-            throw new \Exception("Error Processing Request", 1);
+            return array(
+                'error' => 'invalid request',
+            );
         }
         return $next($request);
     }

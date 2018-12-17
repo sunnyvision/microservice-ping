@@ -13,8 +13,6 @@ use Illuminate\Http\Request;
 */
 
 $router->get('/{any:.*}', function ($any) use ($router) {
-	throw new \Exception("Error Processing Request", 1);
-	
 	$return = array();
 	$return['version'] = '(c) sunnyvision - ' . env('VERSION');
 	$return['answered_at'] = date("Y-m-d H:i:s");
