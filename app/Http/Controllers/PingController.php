@@ -17,12 +17,29 @@ class PingController extends Controller
         // Stub
     }
 
+    /**
+     * Fetching simple information include descriptor, only available after login
+     *
+     * @return array
+     * @author 
+     **/
+    public function info(Request $request)
+    {
+        $return = array();
+        $return['descriptor'] = env('DESCRIPTOR');
+        $return['version'] = '(c) sunnyvision - ' . env('VERSION');
+        $return['answered_at'] = date("Y-m-d H:i:s");
+        $return['queried_by'] = empty($_SERVER['X_HTTP_FORWARDED_FOR']) ? $_SERVER['REMOTE_ADDR'] : $_SERVER['X_HTTP_FORWARDED_FOR'];
+        return $return;
+    }
+
     public function tcp(Request $request, $host, $port) {
         try {
             $latency = microtime(true);
             $status = \App\Ping::pingPort($host, $port);
             return array(
                 'success' => true,
+                'descriptor' => env("DESCRIPTOR"),
                 'latency' => ceil((microtime(true) - $latency) * 100000) / 100 . 'ms',
             );
         } catch (\Exception $e) {
