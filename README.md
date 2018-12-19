@@ -22,6 +22,8 @@ FPM: `.docker/etc/php`
 
 Launch with docker-compose 
 ---
+DESCRIPTOR is an arbitrary string that describe this instance, it will be reported on all authenticated request.
+
 MICROSERVICE_APIKEY is the key required to be posted as "key" in query for every request
 
 HTTPS_PORT is the https port specified in docker-compose.yml  
@@ -30,6 +32,9 @@ HTTP_PORT is the http port specified in docker-compose.yml
 
 
 `DESCRIPTOR=HONGKONG MICROSERVICE_APIKEY=somekey HTTPS_PORT=10443 HTTP_PORT=10080 docker-compose up -d`
+
+Common issues
+---
 
 After initial launch, there will be downtime due to composer fetching new libraries, to check progress, please use
 `docker-compose logs --tail 50 -f composer`
