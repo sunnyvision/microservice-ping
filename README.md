@@ -31,7 +31,7 @@ HTTPS_PORT is the https port specified in docker-compose.yml
 HTTP_PORT is the http port specified in docker-compose.yml 
 
 
-`DESCRIPTOR=HONGKONG MICROSERVICE_APIKEY=somekey HTTPS_PORT=10443 HTTP_PORT=10080 docker-compose up -d`
+`DESCRIPTOR=HONGKONG MICROSERVICE_APIKEY=somekey HTTPS_PORT=10443 HTTP_PORT=10080 docker-compose up -d --build`
 
 Common issues
 ---
@@ -69,3 +69,19 @@ Method: POST
 Path: /tcp/{host}:{port}
 
 Curl: `curl -k -X POST -d "key=somekey" 'https://localhost:10443/tcp/google.com:443'`
+
+
+Traceroute
+---
+Method: POST
+
+Path: /traceroute/{host}
+
+Optional query: hop (default: 30), when specified, will break after reaching maximum hop
+
+Optional query: probe (default: 2), probe per hop
+
+Optional query: wait (default: 1), maximum wait time per hop
+
+
+Curl: `curl -k -X POST -d "key=somekey" 'https://localhost:10443/traceroute/google.com'`

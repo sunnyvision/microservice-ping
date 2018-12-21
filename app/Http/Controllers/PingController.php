@@ -33,6 +33,24 @@ class PingController extends Controller
         return $return;
     }
 
+    public function traceroute(Request $request, $host) {
+        try {
+            $latency = microtime(true);
+            $status = \App\Ping::localTraceRoute($host, $request->input('hop', 30), $request->input('probe', 2), $request->input('wait', 1));
+            return array(
+                'success' => true,
+                'result' => $status,
+            );
+        } catch (\Exception $e) {
+            return array(
+                'success' => false,
+                'host' => $host,
+                'error' => $e->getMessage(),
+                'exception' => get_class($e),
+            );
+        }
+    }
+
     public function tcp(Request $request, $host, $port) {
         try {
             $latency = microtime(true);
