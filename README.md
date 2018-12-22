@@ -71,6 +71,25 @@ Path: /tcp/{host}:{port}
 Curl: `curl -k -X POST -d "key=somekey" 'https://localhost:10443/tcp/google.com:443'`
 
 
+UDP
+---
+Method: POST
+
+Path: /udp/{host}:{port}
+
+Curl: `curl -k -X POST -d "key=somekey" 'https://localhost:10443/udp/google.com:443'`
+
+
+
+SSL
+---
+Method: POST
+
+Path: /ssl/{host}:{port}
+
+Curl: `curl -k -X POST -d "key=somekey" 'https://localhost:10443/ssl/google.com:443'`
+
+
 Traceroute
 ---
 Method: POST

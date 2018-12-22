@@ -51,6 +51,12 @@ class PingController extends Controller
         }
     }
 
+    public function ssl(Request $request, $host, $port) {
+        return $this->tcp($request, "ssl://" . $host, $port);
+    }
+    public function udp(Request $request, $host, $port) {
+        return $this->tcp($request, "udp://" . $host, $port);
+    }
     public function tcp(Request $request, $host, $port) {
         try {
             $latency = microtime(true);

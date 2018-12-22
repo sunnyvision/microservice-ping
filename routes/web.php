@@ -23,4 +23,6 @@ $router->get('/{any:.*}', function ($any) use ($router) {
 $router->post('/info', ['middleware' => 'auth', "uses" => "PingController@info"]);
 $router->post('/icmp/{host}', ['middleware' => 'auth', "uses" => "PingController@icmp"]);
 $router->post('/tcp/{host}:{port}', ['middleware' => 'auth', "uses" => "PingController@tcp"]);
+$router->post('/udp/{host}:{port}', ['middleware' => 'auth', "uses" => "PingController@udp"]);
+$router->post('/ssl/{host}:{port}', ['middleware' => 'auth', "uses" => "PingController@ssl"]);
 $router->post('/traceroute/{host}', ['middleware' => 'auth', "uses" => "PingController@traceroute"]);
