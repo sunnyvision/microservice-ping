@@ -39,12 +39,14 @@ class PingController extends Controller
             $status = \App\Ping::localTraceRoute($host, $request->input('hop', 30), $request->input('probe', 2), $request->input('wait', 1));
             return array(
                 'success' => true,
+                'descriptor' => env("DESCRIPTOR"),
                 'result' => $status,
             );
         } catch (\Exception $e) {
             return array(
                 'success' => false,
                 'host' => $host,
+                'descriptor' => env("DESCRIPTOR"),
                 'error' => $e->getMessage(),
                 'exception' => get_class($e),
             );
