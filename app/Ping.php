@@ -164,7 +164,7 @@ class Ping {
 
 		$lastHop = 0;
 		foreach($res as $r) {
-			$re = '/(\d+)\s+(.*?)\s+\((.*)\)\s+(.*?)/m';
+			$re = '/(\d+)\s+(.*?)\s+\((.*)\)\s+(.*)/m';
 			preg_match_all($re, $r, $probeMatches, PREG_SET_ORDER, 0);
 			$latency = array();
 			if(!empty($probeMatches)) {
@@ -172,7 +172,10 @@ class Ping {
 				$lastHop = $latency['hop'];
 				$latency['source_addr'] = ($probeMatches[0][2]);
 				$latency['source_ip'] = ($probeMatches[0][3]);
-				$latency['rtt'] = ($probeMatches[0][4]);
+				$rtt = $probeMatches[0][4];
+				$rtt = str_replace("ms", "  ", ($rtt));
+				$rtt = str_replace("  ", " ", ($rtt));
+				$latency['rtt'] = array_values(array_filter(explode(" ", str_replace("  ", " ", ($rtt)))));
 			} else if($lastHop != 0) {
 				$latency['hop'] = ++$lastHop;
 				$latency['error'] = 'timeout';
