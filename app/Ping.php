@@ -189,6 +189,7 @@ class Ping {
 		}
 
 		$result['raw'] = implode(PHP_EOL, $res);
+		$result['success'] = $rval === 0;
 		return $result;
 	}
 
