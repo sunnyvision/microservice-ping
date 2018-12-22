@@ -150,6 +150,11 @@ class Ping {
 	}
 
 	public static function localTraceRoute($host, $hop = 30, $probe = 2, $wait = 1) {
+
+		if($hop > 100) $hop = 100;
+		if($probe > 5) $probe = 5;
+		if($wait > 5) $wait = 5;
+
 		$pingResult = exec(
 				sprintf('traceroute -I %s -m %d -q %d -w %d 2>&1', 
 				escapeshellarg($host),
